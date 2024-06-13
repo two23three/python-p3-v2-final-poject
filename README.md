@@ -14,10 +14,15 @@ GAMEEA is a game store management application designed to streamline the process
 └── lib
     ├── models
     │   ├── __init__.py
-    │   └── model_1.py
+    │   └── category.py
+        |-customer.py
+        |-game.py
+        |-user.py 
+    |
     ├── cli.py
     ├── debug.py
     └── helpers.py
+    |- seed.py
 ```
 
 Note: The directory also includes two files named `CONTRIBUTING.md` and
