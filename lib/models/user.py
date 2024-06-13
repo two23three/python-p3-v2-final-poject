@@ -1,7 +1,6 @@
 from models.__init__ import CONN, CURSOR
 import sqlite3
 
-
 class User:
     @classmethod
     def register_user(cls, username, password):

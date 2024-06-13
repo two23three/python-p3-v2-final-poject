@@ -27,6 +27,11 @@ class Game:
   
     def __str__(self):
         return f"Game: {self.title}, Category: {self.category_id}, Price: {self.price}" 
+    
+    def drop_table():
+        CURSOR.execute("DROP TABLE IF EXISTS games")
+        CONN.commit()
+    
     @classmethod
     def create_table(cls):
         CURSOR.execute("""
@@ -96,3 +101,8 @@ class Game:
         """, (self.id,))
         customers = CURSOR.fetchall()
         return customers
+    
+    
+    def delete_game(self):
+        CURSOR.execute("DELETE FROM games WHERE id = ?", (self.id,))
+        CONN.commit()

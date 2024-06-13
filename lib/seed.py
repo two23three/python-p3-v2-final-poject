@@ -22,12 +22,23 @@ def create_user_table():
 )
     """)
     CONN.commit()
+
+def drop_purchases_table():
+    CURSOR.execute("DROP TABLE IF EXISTS purchases")
+    CONN.commit()
                    
 
 
 
 
 def seed_database():
+    # Drop tables if they exist
+    Category.drop_table()
+    Game.drop_table()
+    Customer.drop_table()
+    drop_purchases_table()
+    
+
     # Create tables
     Category.create_table()
     Game.create_table()

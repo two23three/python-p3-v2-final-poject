@@ -2,6 +2,7 @@ from models.game import Game
 from models.category import Category
 from models.customer import Customer
 from models.user import User
+from getpass import getpass
 def exit_program():
     print("Goodbye!")
     exit()
@@ -86,7 +87,7 @@ def customer_buys_game():
  
 def user_login():
     username = input("Enter your username: ")
-    password = input("Enter your password: ")
+    password = getpass("Enter your password: ")
     user = User.login(username, password)
     if user:
         print(f"Welcome, {username}!")
@@ -99,3 +100,17 @@ def user_login():
             return user_login()  # Recursive call to try login again after registration
         else:
             return False
+def delete_game():
+    games = Game.get_all()
+    if not games:
+        print("No games found. Please add a game first.")
+        return
+
+    print("Select a game to delete:")
+    for i, game in enumerate(games):
+        print(f"{i + 1}. {game.title}")
+
+    game_index = int(input("Enter game number: "))
+    selected_game = games[game_index - 1]
+    Game.delete_game(selected_game)
+    print(f"Game '{selected_game.title}' deleted.")

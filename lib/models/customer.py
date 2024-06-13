@@ -34,6 +34,9 @@ class Customer:
     
     def __str__(self):
         return f"Customer: {self.name}, Timestamp: {self.timestamp}"
+    def drop_table():
+        CURSOR.execute("DROP TABLE IF EXISTS customers")
+        CONN.commit()
 
     @classmethod
     def create_table(cls):

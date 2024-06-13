@@ -26,6 +26,10 @@ class Category:
         """, (self.name,))
         self.id = CURSOR.lastrowid  # Get the id of the inserted row
         CONN.commit()
+    
+    def drop_table():
+        CURSOR.execute("DROP TABLE IF EXISTS categories")
+        CONN.commit()
 
     @classmethod
     def create_table(cls):
@@ -56,3 +60,6 @@ class Category:
             return cls(*category)
         else:
             return None
+    def delete(self):
+        CURSOR.execute("DELETE FROM categories WHERE id = ?", (self.id,))
+        CONN.commit()
