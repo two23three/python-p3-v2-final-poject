@@ -1,13 +1,5 @@
 # GAMEEA Project
 
-## Learning Goals
-
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
-- using list and tuples 
-
----
-
 ## Introduction
 GAMEEA is a game store management application designed to streamline the process of managing users, customers, games, purchases, and game categories. It features a command-line interface (CLI) that allows administrators to perform tasks such as adding new games, managing customer information, and processing purchases efficiently. With a well-organized database structure and intuitive user prompts, GAMEEA aims to provide a seamless experience for managing a game store's inventory and customer interactions.
 
@@ -44,14 +36,19 @@ adding them to the `Pipfile`. Then run the commands:
 ```console
 pipenv install
 pipenv shell
+
 ```
+```seed Database
+python lib/seed.py
+```
+
 
 ---
 
 ## Generating Your CLI
-
-A CLI is, simply put, an interactive script and prompts the user and performs
-operations based on user input.
+``` access the menu
+ python lib/cli.py
+```
 
 The project template has a sample CLI in `lib/cli.py` that looks like this:
 
@@ -140,7 +137,8 @@ def exit_program():
     exit()
 
 ```
-##Data Models
+## Data Models
+
 The data models are located in the lib/models directory. Each model corresponds to a table in the database.
 
 `user.py`
@@ -160,6 +158,10 @@ Contains game categories to classify games.
 
 `__init__.py`
 Initializes database connections and constants.
+
+
+
+
 
 
 
