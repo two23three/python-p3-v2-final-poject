@@ -49,41 +49,41 @@ def add_customer():
         print(f"An unexpected error occurred: {e}")
 
 def customer_buys_game():
-     customers = Customer.get_all()
-     if not customers:
+    customers = Customer.get_all()
+    if not customers:
         print("No customers found. Please add a customer first.")
         return
 
-     print("Select a customer:")
-     # Create a dictionary with customer ID as key and customer object as value
-     customer_dict = {i + 1: customer for i, customer in enumerate(customers)}
-     for i, customer in customer_dict.items():
-         print(f"{i}. {customer.name}")
- 
-     customer_index = int(input("Enter customer number: "))
-     selected_customer = customer_dict.get(customer_index)
-     if not selected_customer:
-         print("Invalid customer selection.")
-         return
- 
-     games = Game.get_all()
-     if not games:
-         print("No games found. Please add a game first.")
-         return
- 
-     print("Select a game:")
-     game_dict = {i + 1: game for i, game in enumerate(games)}
-     for i, game in game_dict.items():
-         print(f"{i}. {game.title}")
- 
-     game_index = int(input("Enter game number: "))
-     selected_game = game_dict.get(game_index)
-     if not selected_game:
-         print("Invalid game selection.")
-         return
- 
-     selected_customer.buy_game(selected_game)
-     print(f"{selected_customer.name} purchased {selected_game.title}")
+    print("Select a customer:")
+    customer_dict = {i + 1: customer for i, customer in enumerate(customers)}
+    for i, customer in customer_dict.items():
+        print(f"{i}. {customer.name}")
+
+    customer_index = int(input("Enter customer number: "))
+    selected_customer = customer_dict.get(customer_index)
+    if not selected_customer:
+        print("Invalid customer selection.")
+        return
+
+    games = Game.get_all()
+    if not games:
+        print("No games found. Please add a game first.")
+        return
+
+    print("Select games (enter numbers separated by commas):")
+    game_dict = {i + 1: game for i, game in enumerate(games)}
+    for i, game in game_dict.items():
+        print(f"{i}. {game.title}")
+
+    game_indices = input("Enter game numbers: ").split(",")
+    selected_games = [game_dict.get(int(index.strip())) for index in game_indices if index.strip().isdigit()]
+
+    if not all(selected_games):
+        print("One or more invalid game selections.")
+        return
+
+    selected_customer.buy_games(selected_games)
+    print(f"{selected_customer.name} purchased {[game.title for game in selected_games]}")
  
 def user_login():
     username = input("Enter your username: ")

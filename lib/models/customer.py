@@ -66,9 +66,18 @@ class Customer:
 
 
     def buy_game(self, game):
+     
         CURSOR.execute("""
         INSERT INTO purchases (customer_id, game_id)
         VALUES (?, ?)
         """, (self.id, game.id))
         CONN.commit()
+   
+    def buy_games(self, games):
+        for game in games:
+            CURSOR.execute("""
+            INSERT INTO purchases (customer_id, game_id)
+            VALUES (?, ?)
+            """, (self.id, game.id))
+            CONN.commit()
     
