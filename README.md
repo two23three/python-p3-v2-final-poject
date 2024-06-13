@@ -9,17 +9,8 @@
 ---
 
 ## Introduction
-This project is a basic Game store Management that has 5 tables 
-1.Users table 
-which anables the Administrator to sign in
-2.customers table 
-Which keeps track of all customers
-3.Games table 
-Keeps track of all games 
-4.Purchases table
-has purchases made listing customers and which game they bought
-5.categories tables
-has game categories
+GAMEEA is a game store management application designed to streamline the process of managing users, customers, games, purchases, and game categories. It features a command-line interface (CLI) that allows administrators to perform tasks such as adding new games, managing customer information, and processing purchases efficiently. With a well-organized database structure and intuitive user prompts, GAMEEA aims to provide a seamless experience for managing a game store's inventory and customer interactions.
+
 
 
 
