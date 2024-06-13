@@ -106,3 +106,31 @@ class Game:
     def delete_game(self):
         CURSOR.execute("DELETE FROM games WHERE id = ?", (self.id,))
         CONN.commit()
+     
+    
+    def update(self, new_title=None, new_category_name=None, new_price=None):
+        if new_title:
+            if isinstance(new_title, str) and 5 <= len(new_title) <= 50:
+                self._title = new_title
+            else:
+                raise TypeError("title must be of type str and between 5 and 50 characters")
+        
+        if new_category_name:
+            category = Category.get_category_by_name(new_category_name)
+            if category is None:
+                print(f"Category '{new_category_name}' not found. Creating new category.")
+                category = Category.create_category(new_category_name)
+            self.category_id = category.id
+        
+        if new_price:
+            self.price = new_price
+
+        CURSOR.execute("""
+        UPDATE games
+        SET title = ?, category_id = ?, price = ?
+        WHERE id = ?
+        """, (self.title, self.category_id, self.price, self.id))
+        CONN.commit()
+
+        print(f"Game '{self.title}' updated successfully.")
+

@@ -23,7 +23,7 @@ def game_by_category():
     if category:
         games = Game.get_games_by_category(category.id)
         for game in games:
-            print(game)
+            print(game) 
     else:
         print("Category not found.")
 
@@ -126,3 +126,32 @@ def delete_game():
     selected_game = games[game_index - 1]
     Game.delete_game(selected_game)
     print(f"Game '{selected_game.title}' deleted.")
+
+def update_game():
+    games = Game.get_all()
+    if not games:
+        print("No games found. Please add a game first.")
+        return
+
+    print("Select a game to update:")
+    for i, game in enumerate(games):
+        print(f"{i + 1}. {game.title}")
+
+    game_index = int(input("Enter game number: "))
+    selected_game = games[game_index - 1]
+
+    new_title = input("Enter new title (leave blank to keep current title): ")
+    new_category_name = input("Enter new category (leave blank to keep current category): ")
+    new_price = input("Enter new price (leave blank to keep current price): ")
+
+    try:
+        new_price = float(new_price) if new_price else selected_game.price
+        selected_game.update(
+            new_title=new_title if new_title else selected_game.title,
+            new_category_name=new_category_name if new_category_name else selected_game.category_id,
+            new_price=new_price
+        )
+    except ValueError:
+        print("Invalid price. Please enter a numeric value.")
+    except Exception as e:
+        print(f"An error occurred: {e}")

@@ -9,7 +9,8 @@ from helpers import (
     add_customer,
     customer_buys_game,
     delete_game,
-    user_login
+    user_login,
+    update_game
 
     
 )
@@ -38,7 +39,9 @@ def main():
         elif choice == "6":
             customer_buys_game()      
         elif choice == "7":
-            delete_game()      
+            delete_game()   
+        elif choice == "8":
+            update_game()   
             
         else:
             print("Invalid choice")
@@ -54,6 +57,6 @@ def menu():
     print("5. add customer")
     print("6. customer purchase game")
     print("7. Delete game")
-
+    print("8. Update game")
 if __name__ == "__main__":
     main()
