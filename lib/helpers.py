@@ -112,14 +112,6 @@ def welcome_message(username):
     print(" " * 10 + "We're glad to have you here!.")
     print("="*70 + "\n")
 
-
-
-
-
-
-
-
-
 def delete_game():
     games = Game.get_all()
     if not games:
