@@ -90,7 +90,7 @@ def user_login():
     password = getpass("Enter your password: ")
     user = User.login(username, password)
     if user:
-        print(f"Welcome, {username}!")
+        welcome_message(username)
         return True
     else:
         print("Invalid username or password.")
@@ -100,6 +100,26 @@ def user_login():
             return user_login()  # Recursive call to try login again after registration
         else:
             return False
+
+def welcome_message(username):
+    print("\n" + "="*70)
+    print(" " * 10 + "  ____    _    __  __ _____ _____   ")
+    print(" " * 10 + " / ___|  / \\  |  \\/  | ____| ____|  ")
+    print(" " * 10 + "| |  _  / _ \\ | |\\/| |  _| |  _|    ")
+    print(" " * 10 + "| |_| |/ ___ \\| |  | | |___| |___   ")
+    print(" " * 10 + " \\____/_/   \\_\\_|  |_|_____|_____|  ")
+    print("\n" + " " * 10 + "Welcome to GAMEEA, {}!".format(username))
+    print(" " * 10 + "We're glad to have you here!.")
+    print("="*70 + "\n")
+
+
+
+
+
+
+
+
+
 def delete_game():
     games = Game.get_all()
     if not games:
