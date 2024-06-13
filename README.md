@@ -50,7 +50,7 @@ python lib/seed.py
  python lib/cli.py
 ```
 
-The project template has a sample CLI in `lib/cli.py` that looks like this:
+heres a sample  of `lib/cli.py` that looks like this:
 
 ```py
 # lib/cli.py
